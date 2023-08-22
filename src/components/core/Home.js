@@ -11,7 +11,6 @@ export default function Home( {setSearch, search } ) {
   
     async function fetchProductData() {
       setLoading(true)
-      console.log("1")
       try{
   
         const res = await fetch(API_URL);
@@ -24,7 +23,6 @@ export default function Home( {setSearch, search } ) {
         console.log("Error aya hua hai")
         setItems ( [] )
       }
-      console.log("3")
       setLoading(false)
     }
 
@@ -32,7 +30,6 @@ export default function Home( {setSearch, search } ) {
     useEffect( () => {
   
       fetchProductData()
-      console.log("4")
     }, [])
   return (
     <div>

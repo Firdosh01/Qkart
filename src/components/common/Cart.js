@@ -1,9 +1,8 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {useSelector } from 'react-redux'
 import {useEffect, useState} from 'react'
 import { Link } from "react-router-dom"
 import CartItem from './CartItem'
-import { resetCart } from '../../slices/cartSlice'
 
 export default function Cart() {
     const {cart} = useSelector((state) => state)

@@ -34,13 +34,6 @@ export default function Signup() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
-    // if (Password !== ConfirmPassword) {
-    //   toast.error("Passwords Do Not Match")
-    //   return
-    // }else{
-    //     dispatch(signUp(UserName,Email,Password,ConfirmPassword, navigate))
-    // }
-
     if (Password !== ConfirmPassword) {
       toast.error('Passwords do not match!');
     } else if (Password.length < 6) {
@@ -50,15 +43,6 @@ export default function Signup() {
       dispatch(signUp(UserName,Email,Password,ConfirmPassword, navigate))
     }
 
-  
-
-    // // Reset
-    // setFormData({
-    //   UserName: "",
-    //   Email: "",
-    //   Password: "",
-    //   ConfirmPassword: "",
-    // })
 
   }
 
