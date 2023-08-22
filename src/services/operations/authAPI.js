@@ -3,6 +3,7 @@ import { setLoading, setToken } from "../../slices/authSlice"
 import { setUser } from "../../slices/profileSlice"
 import { endpoints } from "./apis"
 import axios from "axios"
+import { apiConnector } from "./apiconnector"
 
 const {
   SIGNUP_API,
@@ -21,19 +22,30 @@ export function signUp(
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      const config = {
-        headers: {
-          'Content-type': 'application/json',
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     'Content-type': 'application/json',
+      //   },
+      // };
 
-      const body = JSON.stringify({ UserName, Email, Password, ConfirmPassword })
+      // const body = JSON.stringify({ UserName, Email, Password, ConfirmPassword })
 
-      const  response  = await axios.post(
-        `${SIGNUP_API}`,
-        // {UserName, Email, Password, ConfirmPassword },
-        body, config
-      );
+      // const  response  = await axios.post(
+      //   `${SIGNUP_API}`,
+      //   // {UserName, Email, Password, ConfirmPassword },
+      //   body, config
+      // );
+
+      const response = await apiConnector("POST", SIGNUP_API, {
+        UserName,
+        Email,
+        Password,
+        ConfirmPassword,
+      })
+
+
+      
+
 
       console.log("before running")
       console.log("SIGNUP API RESPONSE............", response)
@@ -58,19 +70,26 @@ export function login(Email, Password, navigate) {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      const config = {
-        headers: {
-          'Content-type': 'application/json',
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     'Content-type': 'application/json',
+      //   },
+      // };
 
-      const body = JSON.stringify({ Email, Password })
+      // const body = JSON.stringify({ Email, Password })
   
-      const  response  = await axios.post(
-        `${LOGIN_API}`,
-        // { Email, Password },
-        body, config
-      );
+      // const  response  = await axios.post(
+      //   `${LOGIN_API}`,
+      //   // { Email, Password },
+      //   body, config
+      // );
+      
+      const response = await apiConnector("POST", LOGIN_API, {
+        Email,
+        Password,
+      })
+
+
 
       console.log("LOGIN API RESPONSE............", response)
 
