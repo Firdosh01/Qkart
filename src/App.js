@@ -5,6 +5,7 @@ import Signup from './components/core/Auth/Signup';
 import Login from './components/core/Auth/Login';
 import {Route, Routes } from "react-router-dom";
 import Home from './components/core/Home';
+import Cart from './components/common/Cart';
 import OpenRoute from './components/common/OpenRoute';
 
 function App() {
@@ -36,6 +37,15 @@ function App() {
           <Home />
         } 
         />
+
+        <Route
+        path='cart'
+        element={
+          <Cart />
+        }
+        />
+
+        
 
       </Routes>
     </div>
