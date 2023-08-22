@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://qkart-eta.vercel.app",
+		origin:"https://timely-torte.netlify.app",
 		credentials:true,
 	})
 )
