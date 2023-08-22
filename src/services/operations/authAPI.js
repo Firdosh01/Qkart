@@ -23,13 +23,16 @@ export function signUp(
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
       };
+
+      const body = JSON.stringify({ UserName, Email, Password, ConfirmPassword })
+
       const  response  = await axios.post(
         `${SIGNUP_API}`,
-        {UserName, Email, Password, ConfirmPassword },
-        config
+        // {UserName, Email, Password, ConfirmPassword },
+        body, config
       );
 
       console.log("before running")
@@ -57,14 +60,16 @@ export function login(Email, Password, navigate) {
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
       };
+
+      const body = JSON.stringify({ Email, Password })
   
       const  response  = await axios.post(
         `${LOGIN_API}`,
-        { Email, Password },
-        config
+        // { Email, Password },
+        body, config
       );
 
       console.log("LOGIN API RESPONSE............", response)
