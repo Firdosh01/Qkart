@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://ecommercebackend-1e6w.onrender.com",
+		origin:"https://qkart-eta.vercel.app",
 		credentials:true,
 	})
 )
