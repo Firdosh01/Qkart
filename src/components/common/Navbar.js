@@ -3,24 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom"
 import logo from '../../assets/logo_light.svg'
 import { logout } from '../../services/operations/authAPI'
-import Home from '../core/Home'
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingCart } from 'react-icons/fa'
 
 
-export default function Navbar() {
-  const [search, setSearch] = useState('')
+export default function Navbar({setSearch}) {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const { cart } = useSelector((state) => state);
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-
-
-
-
   return (
     <>
       <div className='w-full border-b-[1px] '>
@@ -65,9 +58,19 @@ export default function Navbar() {
               </Link>
             )}
             <div className='flex items-center gap-2'>
+              {token !== null &&
+                <Link to='/cart'>
+                  <div className='relative'>
+                    < FaShoppingCart className='text-2xl text-[#00A278]' />
+                    {
+                      cart.length > 0 &&
+                      <span className='absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-green-600 rounded-full -top-1 -right-2 animate-bounce'>{cart.length}</span>
+                    }
+                  </div>
+                </Link>
+              }
 
-              {
-                token !== null &&
+              {token !== null &&
                 <div>
                   <button onClick={() => dispatch(logout(navigate))} className='text-sm capitalize outline-none text-[#00A278]'>LOGOUT</button>
                 </div>
@@ -77,7 +80,6 @@ export default function Navbar() {
           </div>
 
         </div>
-      {/* <Home search={search} SetSearch={setSearch} /> */}
       </div>
     </>
   )

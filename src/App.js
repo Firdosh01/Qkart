@@ -7,11 +7,13 @@ import {Route, Routes } from "react-router-dom";
 import Home from './components/core/Home';
 import Cart from './components/common/Cart';
 import OpenRoute from './components/common/OpenRoute';
+import { useState } from 'react';
 
 function App() {
+  const [search, setSearch] = useState('')
   return (
     <div >
-      <Navbar />
+      <Navbar setSearch={setSearch}/>
       <Routes>
 
         <Route
@@ -34,7 +36,7 @@ function App() {
         <Route
         path='/'
         element={
-          <Home />
+          <Home search={search} SetSearch={setSearch} />
         } 
         />
 

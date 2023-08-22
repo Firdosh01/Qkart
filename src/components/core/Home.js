@@ -34,8 +34,6 @@ export default function Home( {setSearch, search } ) {
       fetchProductData()
       console.log("4")
     }, [])
-// return <h1>Hello world</h1>
-
   return (
     <div>
       {
@@ -45,26 +43,18 @@ export default function Home( {setSearch, search } ) {
           <div className='grid max-w-6xl gap-5 p-6 mx-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 my-7 '>
             {
               
-              // items.filter((item) => 
-              //   item.title.toLowerCase().includes(search)
-              // ).map ( (items) => {
-              //   return (
-              //     <Product 
-              //     key={items.id}
-              //     items= {items}
-              //      />
+              items.filter((item) => 
+                item.title.toLowerCase().includes(search)
+              ).map ( (items) => {
+                return (
+                  <Product 
+                  key={items.id}
+                  items= {items}
+                   />
                   
-              //   )
+                )
                 
-              //   })
-
-              items.map ( (items) => (
-                <Product 
-                key={items.id}
-                items= {items}
-                 />
-              
-            ))
+                })
             }
           </div>
         )
