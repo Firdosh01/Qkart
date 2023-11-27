@@ -42,10 +42,10 @@ export default function Navbar({setSearch}) {
 
           </div>
 
-          <div className='flex items-center gap-x-5'>
+          <div className='flex items-center'>
             {token === null && (
               <Link to="/login">
-                <button className='text-sm capitalize outline-none text-[#00A278]'>
+                <button className='text-sm capitalize outline-none text-[#00A278] mr-3'>
                   LOGIN
                 </button>
               </Link>
