@@ -13,7 +13,7 @@ function App() {
   const [search, setSearch] = useState('')
   return (
     <div >
-      <Navbar setSearch={setSearch}/>
+      <Navbar search={search} setSearch={setSearch}/>
       <Routes>
 
         <Route
@@ -36,7 +36,7 @@ function App() {
         <Route
         path='/'
         element={
-          <Home search={search} SetSearch={setSearch} />
+          <Home search={search} setSearch={setSearch} />
         } 
         />
 
@@ -46,8 +46,6 @@ function App() {
           <Cart />
         }
         />
-
-        
 
       </Routes>
     </div>

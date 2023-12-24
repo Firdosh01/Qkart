@@ -1,68 +1,72 @@
-import React from 'react'
-import {useState, useEffect} from 'react'
-import Spinner from '../common/Spinner';
-import Product from './Product';
+import React from "react";
+import { useState, useEffect } from "react";
+import Spinner from "../common/Spinner";
+import Product from "./Product";
+import { BiUpsideDown } from "react-icons/bi";
 
-export default function Home( {setSearch, search } ) {
+export default function Home({ setSearch, search }) {
+  const API_URL = "https://fakestoreapi.com/products";
+  const [loading, setLoading] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [errMsg, setErrMsg] = useState("");
 
-    const API_URL = "https://fakestoreapi.com/products";
-    const [loading, setLoading] = useState( false )
-    const [items, setItems] = useState( [] )
-  
-    async function fetchProductData() {
-      setLoading(true)
-      console.log("1")
-      try{
-  
-        const res = await fetch(API_URL);
-        const data = await res.json();
-        setItems(data)
-        console.log(data)
-  
+  async function fetchProductData() {
+    setLoading(true);
+    try {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      if (data && data.length > 0) {
+        setAllProducts(data);
+        setDisplayedProducts(data);
+        setErrMsg("");
+      } else {
+        setAllProducts([]);
+        setDisplayedProducts([]);
+        setErrMsg("No products found");
       }
-      catch(error) {
-        console.log("Error aya hua hai")
-        setItems ( [] )
-      }
-      console.log("3")
-      setLoading(false)
+    } catch (error) {
+      setErrMsg("Error fetching products. Please try again.");
+      setAllProducts([]);
+      setDisplayedProducts([]);
     }
+    setLoading(false);
+  }
 
-  
-    useEffect( () => {
-  
-      fetchProductData()
-      console.log("4")
-    }, [])
+  const filterProducts = (search) => {
+    const filtered = allProducts.filter((product) =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setDisplayedProducts(filtered);
+    setSearch(search);
+  };
+
+  useEffect(() => {
+    fetchProductData();
+  }, []);
+
+  useEffect(() => {
+    filterProducts(search);
+  }, [search]);
+
   return (
     <div>
-      {
-         loading ? <Spinner/> :
-           items.length > 0 ?
-        (
-          <div className='grid max-w-6xl gap-5 p-6 mx-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 my-7 '>
-            {
-              
-              items.filter((item) => 
-                item.title.toLowerCase().includes(search)
-              ).map ( (items) => {
-                return (
-                  <Product 
-                  key={items.id}
-                  items= {items}
-                   />
-                  
-                )
-                
-                })
-            }
+      {loading ? (
+        <Spinner />
+      ) : displayedProducts.length > 0 ? (
+        <div className="grid max-w-6xl gap-5 p-6 mx-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 my-7 ">
+          {displayedProducts.map((items) => {
+            return <Product key={items.id} items={items} />;
+          })}
+        </div>
+      ) : (
+        !errMsg && (
+          <div>
+            <p className="flex items-center justify-center gap-1 mt-24 text-center">No product found <BiUpsideDown /></p>
           </div>
         )
-        :
-        <div className='flex items-center justify-center '>
-        <p>No Data Found</p>
-        </div>
-      }
+      )}
+      <div>{errMsg && <p className="flex items-center justify-center gap-1 mt-24 text-center">{errMsg}</p>}</div>
     </div>
-  )
+  );
 }
