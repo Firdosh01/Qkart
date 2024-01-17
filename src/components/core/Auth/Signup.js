@@ -21,7 +21,7 @@ export default function Signup() {
 
   const { UserName, Email, Password, ConfirmPassword } = formData;
 
-  // Handle input fields, when some value changes
+  /* Handle input fields, when some value changes */
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -39,23 +39,10 @@ export default function Signup() {
     } else if (Password.length < 6) {
       toast.error('Password must be at least 6 characters');
     } else {
-      // Dispatch your data here
       dispatch(signUp(UserName,Email,Password,ConfirmPassword, navigate))
+      toast.success("login successful")
     }
-
-  
-
-    // // Reset
-    // setFormData({
-    //   UserName: "",
-    //   Email: "",
-    //   Password: "",
-    //   ConfirmPassword: "",
-    // })
-
   }
-
-
 
 
   return (
