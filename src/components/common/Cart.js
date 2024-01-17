@@ -11,6 +11,7 @@ export default function Cart() {
     useEffect( () => {
       setTotalAmount( cart.reduce ( (acc, curr) => acc + curr.price,0));
     }, [cart])
+    console.log(cart)
 
   return (
     <div>
@@ -37,7 +38,7 @@ export default function Cart() {
               </div>
 
             <div className='mb-20'>
-              <p className='text-xl text-slate-700 font-[600] mb-5 flex'>Total Amount: <span className='ml-2 font-bold text-black'>${totalAmount.toFixed(2)} </span></p>
+              <p className='text-xl text-slate-700 font-[600] mb-5 flex'>Total Amount: <span className='ml-2 font-bold text-black'>&#8377;{totalAmount.toFixed(2)} </span></p>
               <button className='w-full text-lg py-2.5 rounded-lg font-bold text-white bg-[#15803d] border-2 border-[#15803d] hover:bg-white hover:text-[#15803d] transition-all duration-300 ease-linear'>
                 CheckOut Now
               </button>

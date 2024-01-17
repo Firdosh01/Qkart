@@ -8,6 +8,7 @@ import Home from './components/core/Home';
 import Cart from './components/common/Cart';
 import OpenRoute from './components/common/OpenRoute';
 import { useState } from 'react';
+import SingleItem from './pages/SingleItem';
 
 function App() {
   const [search, setSearch] = useState('')
@@ -33,19 +34,9 @@ function App() {
           }
         />
 
-        <Route
-        path='/'
-        element={
-          <Home search={search} setSearch={setSearch} />
-        } 
-        />
-
-        <Route
-        path='cart'
-        element={
-          <Cart />
-        }
-        />
+        <Route path='/' element={ <Home search={search} SetSearch={setSearch} /> }  />
+        <Route path='product/:id' element={<SingleItem />} />
+        <Route path='cart' element={ <Cart /> } />
 
       </Routes>
     </div>

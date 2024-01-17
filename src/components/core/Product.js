@@ -1,68 +1,25 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import { add, addToCart, remove } from '../../slices/cartSlice';
+import { Link } from 'react-router-dom';
+
 export default function Product({ items }) {
-
-  const { cart } = useSelector((state) => state);
-  const { token } = useSelector((state) => state.auth)
-
-  const dispatch = useDispatch();
-
-  const addToCart = () => {
-    if (token) {
-      toast.success('Item added to Cart');
-      dispatch(add(items));
-    }else{
-    // if user not login then show toast 
-    toast.error('Login to add an item to the Cart ');      
-    }
-  }
-
-  const removeFromCart = () => {
-    dispatch(remove(items.id));
-    toast.error("Item removed from Cart");
-  }
-
 
   return (
     <div>
-      <div className='py-3 flex flex-col items-center justify-between w-full gap-3 p-4 transition  ease-in rounded-xl border-2 border-[#00095] shadow-lg hover:shadow-2xl hover:scale-[1.03] md:hover:scale-[1.05] h-[375px]'>
-        <div>
-          <p className='text-[#1d783e] font-semibold text-lg '>{items.title.split(" ").slice(0, 3).join(" ") + "..."}</p>
-        </div>
-
-        <div>
-          <p className='w-40 font-normal text-gray-400 text-[10px] text-left'>{items.description.split(" ").slice(0, 10).join(" ") + "..."}</p>
-        </div>
-
-        <div className='h-[180px]'>
-          <img src={items.image} alt="" className='w-full h-full' />
-        </div>
-
-        <div className='flex items-center justify-between w-full mt-5'>
-          <div>
-            <p className='font-semibold text-green-600'>${items.price}</p>
+      <Link to={`/product/${items.id}`} className="w-full p-4 lg:w-1/4 md:w-1/2">
+        <a className="relative block h-48 overflow-hidden rounded">
+          <img alt="ecommerce" className="block object-cover object-center w-full h-full" src={items.images[0]} />
+        </a>
+        <div className="flex items-center justify-between mt-4">
+          <div className="">
+            <h3 className="mb-1 text-xs tracking-widest text-gray-500 uppercase title-font">{items?.category?.name}</h3>
+          <h2 className="text-lg font-medium text-gray-900 title-font">{items.title.split(" ").slice(0,4).join(" ") + "..."}</h2>
+          <p className="mt-1">&#8377;{items.price}</p>
           </div>
-          {
-            cart.some((p) => p.id == items.id) ?
-              (
-                <button className='font-semibold text-gray-700 border-2 border-gray-700 rounded-full text-[12px] p-1 px-3 uppercase
-                 hover:bg-gray-700 hover:text-white duration-300' onClick={removeFromCart}>
-                  Remove Item
-                </button>
-              ) :
-              (
-                <button className='font-semibold text-gray-700 border-2 border-gray-700 rounded-full text-[12px] p-1 px-3 uppercase
-                 hover:bg-gray-700 hover:text-white duration-300' onClick={addToCart}>
-                  Add To Cart
-                </button>
-              )
-          }
-
-
+          <div>
+            <button className="px-5 py-2 text-white bg-indigo-500 rounded-lg">Cart</button>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
