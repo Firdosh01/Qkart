@@ -17,7 +17,6 @@ export default function Product({ items }) {
     // if user not login then show toast 
     toast.error('Login to add an item to the Cart ');      
     }
-
   }
 
   const removeFromCart = () => {

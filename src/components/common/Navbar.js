@@ -6,8 +6,7 @@ import { logout } from '../../services/operations/authAPI'
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingCart } from 'react-icons/fa'
 
-
-export default function Navbar({setSearch}) {
+export default function Navbar({setSearch, search}) {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const { cart } = useSelector((state) => state);
@@ -31,13 +30,14 @@ export default function Navbar({setSearch}) {
               type="text"
               className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded border 
               border-solid border-[#00A278] bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] select-none"
-              placeholder="Search for items/categories" onChange={(e) => setSearch(e.target.value)} 
+              value={search}
+              placeholder="Search for items/categories" 
+              onChange={(e) => setSearch(e.target.value)} 
               />
 
             {/* <!--Search button--> */}
             <div className='absolute top-[25%] right-0'>
               < AiOutlineSearch color='#00A278' fontSize={20} className='cursor-pointer' />
-
             </div>
 
           </div>

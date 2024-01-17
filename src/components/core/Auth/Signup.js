@@ -43,6 +43,15 @@ export default function Signup() {
       dispatch(signUp(UserName,Email,Password,ConfirmPassword, navigate))
     }
 
+  
+
+    // // Reset
+    // setFormData({
+    //   UserName: "",
+    //   Email: "",
+    //   Password: "",
+    //   ConfirmPassword: "",
+    // })
 
   }
 
