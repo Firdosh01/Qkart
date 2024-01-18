@@ -16,7 +16,7 @@ export default function Product({ items }) {
           <p className="mt-1">&#8377;{items.price}</p>
           </div>
           <div>
-            <button className="px-5 py-2 text-white bg-indigo-500 rounded-lg">Cart</button>
+            <button className="px-5 py-2 text-white bg-[#00A278] rounded-lg">Cart</button>
           </div>
         </div>
       </Link>

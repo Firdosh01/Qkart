@@ -5,8 +5,9 @@ import Product from "./Product";
 import jsonData from '../../data/productdata.json'
 
 export default function Home({ setSearch, search }) {
-  const [items, setItems] = useState(jsonData)
+  const [items, setItems] = useState([])
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true)
 
   const handleSearch = () => {
     const trimmedQuery = search.trim();
@@ -31,12 +32,13 @@ export default function Home({ setSearch, search }) {
   };
   
   useEffect(() => {
-    handleSearch()
+      handleSearch()
+      setLoading(false)
   },[search])
   
   return (
     <div>
-      { items.length > 0 ? (
+      { loading ? <Spinner /> : items.length > 0 ? (
         <div className="grid max-w-6xl gap-5 p-6 mx-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 my-7 ">
           {items.map((items) => {
               return <Product key={items.id} items={items} />;

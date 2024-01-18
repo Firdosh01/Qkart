@@ -76,7 +76,7 @@ function SingleItem() {
             <div>
               {cart.some((p) => p.id == singleItem.id) ?
               (
-                <div className="text-white bg-indigo-500 border-0 cursor-pointer select-none focus:outline-none hover:bg-indigo-600 btn">        
+                <div className="text-white border-0 cursor-pointer select-none focus:outline-none btn">        
                 <button 
                   onClick={() => toast.error("Item added already")} 
                   
@@ -86,7 +86,7 @@ function SingleItem() {
                 </div>
                 
               ) : (
-                <div className="text-white bg-indigo-500 border-0 cursor-pointer select-none focus:outline-none hover:bg-blue-900 btn">
+                <div className="text-white border-0 cursor-pointer select-none focus:outline-none btn">
                   
                 <button 
                   onClick={addToCart} 

@@ -18,10 +18,16 @@ input {
 }
 .btn{
   width: fit-content;
+  background-color: #00A278;
   border-radius: 5px;
 }
 .btn button{
   padding: 10px 15px;
+  border-radius: 5px;
+}
+.btn :hover{
+  background-color: #2c856d;
+  transition: .5s ease-in-out;
 }
 .image_container{
   width: 50%;
