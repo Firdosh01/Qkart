@@ -19,7 +19,7 @@ input {
 .btn{
   width: fit-content;
   background-color: #00A278;
-  border-radius: 5px;
+  border-radius: 20px 0px;
 }
 .btn button{
   padding: 10px 15px;
