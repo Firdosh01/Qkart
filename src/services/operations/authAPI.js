@@ -22,19 +22,6 @@ export function signUp(
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      // const config = {
-      //   headers: {
-      //     'Content-type': 'application/json',
-      //   },
-      // };
-
-      // const body = JSON.stringify({ UserName, Email, Password, ConfirmPassword })
-
-      // const  response  = await axios.post(
-      //   `${SIGNUP_API}`,
-      //   // {UserName, Email, Password, ConfirmPassword },
-      //   body, config
-      // );
 
       const response = await apiConnector("POST", SIGNUP_API, {
         UserName,
@@ -42,14 +29,6 @@ export function signUp(
         Password,
         ConfirmPassword,
       })
-
-
-      
-
-
-      console.log("before running")
-      console.log("SIGNUP API RESPONSE............", response)
-      console.log("after running")
     
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -70,26 +49,11 @@ export function login(Email, Password, navigate) {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      // const config = {
-      //   headers: {
-      //     'Content-type': 'application/json',
-      //   },
-      // };
-
-      // const body = JSON.stringify({ Email, Password })
-  
-      // const  response  = await axios.post(
-      //   `${LOGIN_API}`,
-      //   // { Email, Password },
-      //   body, config
-      // );
       
       const response = await apiConnector("POST", LOGIN_API, {
         Email,
         Password,
       })
-
-
 
       console.log("LOGIN API RESPONSE............", response)
 

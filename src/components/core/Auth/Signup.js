@@ -40,7 +40,6 @@ export default function Signup() {
       toast.error('Password must be at least 6 characters');
     } else {
       dispatch(signUp(UserName,Email,Password,ConfirmPassword, navigate))
-      toast.success("login successful")
     }
   }
 
